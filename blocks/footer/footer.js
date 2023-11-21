@@ -11,7 +11,7 @@ export default async function decorate(block) {
 
   // load footer fragment
   const footerPath = footerMeta.footer || '/footer';
-  console.log(footerPath, "footerPath");
+  
   const fragment = await loadFragment(footerPath);
 
   // decorate footer DOM
