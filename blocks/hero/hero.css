@@ -18,22 +18,24 @@ main .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  color: white;
+  text-align: center;;
+  color: black;
+  font-family: var(--title-font-family);
+  font-weight: 500;
 }
 
-main .hero picture {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+main .hero picture {  
+  z-index: -1;  
+  display: block;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: cover;
   box-sizing: border-box;
 }
 
 main .hero img {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }
