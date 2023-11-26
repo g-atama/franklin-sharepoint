@@ -47,16 +47,20 @@ customElements.define('arc-volatile-data', ArcVolatileCommerceData);
 export default async function decorate(block) {
   // eslint-disable-next-line no-undef
   const slug = window.location.pathname.split('/').at(-1);
-  const result = await fetch(`/data/commerce/volatile/${slug}`);
-  const volatileData = await result.json();
+  try {
+    const result = await fetch(`/data/commerce/volatile/${slug}`);
+    const volatileData = await result.json();
 
-  console.log('volatileData', volatileData);
+    console.log('volatileData', volatileData);
 
-  const volatileDataDisplay = document.createElement('arc-volatile-data');
-  // work
-  volatileDataDisplay.setAttribute('data-price', volatileData.pricing.price);
-  volatileDataDisplay.setAttribute('data-currency', volatileData.pricing.currency);
-  volatileDataDisplay.setAttribute('data-available', volatileData.available);
-  block.textContent = '';
-  block.append(volatileDataDisplay);
+    const volatileDataDisplay = document.createElement('arc-volatile-data');
+    // work
+    volatileDataDisplay.setAttribute('data-price', volatileData.pricing.price);
+    volatileDataDisplay.setAttribute('data-currency', volatileData.pricing.currency);
+    volatileDataDisplay.setAttribute('data-available', volatileData.available);
+    block.textContent = '';
+    block.append(volatileDataDisplay);
+  } catch (error) {
+    console.log('could not fetch data', error);
+  }
 }
