@@ -61,6 +61,7 @@ export default async function decorate(block) {
     block.textContent = '';
     block.append(volatileDataDisplay);
   } catch (error) {
-    console.log('could not fetch data', error);
+    // no op
+    // console.log('could not fetch data', error);
   }
 }
