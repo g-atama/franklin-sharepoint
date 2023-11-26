@@ -53,6 +53,7 @@ export default async function decorate(block) {
   console.log('volatileData', volatileData);
 
   const volatileDataDisplay = document.createElement('arc-volatile-data');
+  // work
   volatileDataDisplay.setAttribute('data-price', volatileData.pricing.price);
   volatileDataDisplay.setAttribute('data-currency', volatileData.pricing.currency);
   volatileDataDisplay.setAttribute('data-available', volatileData.available);
