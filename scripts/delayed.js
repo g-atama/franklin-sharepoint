@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/no-unresolved
+import { html, render } from 'https://esm.sh/htm/preact/standalone';
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './aem.js';
 

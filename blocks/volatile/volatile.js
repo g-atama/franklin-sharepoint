@@ -48,7 +48,7 @@ export default async function decorate(block) {
   // eslint-disable-next-line no-undef
   const slug = window.location.pathname.split('/').at(-1);
   try {
-    const result = await fetch(`/data/commerce/volatile/${slug}`);
+    const result = await fetch(`/_data/commerce/volatile/${slug}`);
     const volatileData = await result.json();
 
     console.log('volatileData', volatileData);
