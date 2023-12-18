@@ -28,7 +28,7 @@ export default function ProductDetails(props) {
         },
       }),
     });
-    const productResult = await result.json();
+    const productResult = await result.json();    
     setProduct(productResult?.data?.product);
   }, []);
 
@@ -36,7 +36,8 @@ export default function ProductDetails(props) {
     ${product && html`    
     <h2>${product.title}</h2>
     <img src="${product.variants.nodes[0].image.url}" alt="${product.title}" />
-    `}
+    <p>${product.description}</p>
+    `}    
     </div>`;
 }
 
