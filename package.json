@@ -7,7 +7,8 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
-    "semantic-release": "semantic-release --debug"
+    "semantic-release": "semantic-release --debug",
+    "dev": "npx adobe/helix-cli up"
   },
   "repository": {
     "type": "git",

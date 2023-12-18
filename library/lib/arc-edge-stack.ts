@@ -1,3 +1,6 @@
+/* eslint-disable no-new */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/prefer-default-export */
 import { Fn, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
 import {
   Code,
@@ -66,7 +69,7 @@ export class ArcEdgeStack extends Stack {
         sendPushInvalidationHeader: false,
         edsURL: props.edsURL,
         additionalBehaviors: {
-          ["/_data/commerce/volatile/*"]: {
+          "/_data/commerce/volatile/*": {
             origin: new HttpOrigin(
               Fn.parseDomainName(commerceDataFunctionAndURL.url.url)
             ),
@@ -78,7 +81,7 @@ export class ArcEdgeStack extends Stack {
               },
             ],
           },
-          ["/_data/personalize/edge/*"]: {
+          "/_data/personalize/edge/*": {
             origin: new HttpOrigin(
               Fn.parseDomainName(commerceDataFunctionAndURL.url.url)
             ),
