@@ -1,6 +1,6 @@
 mountpoints:
   /: https://drive.google.com/drive/folders/1uhqMBtSDqmbNWDRHV1KkY1znzTq2WtjW
 
-  Folders:
+Folders:
   # Generate everything on and below /products with the "generic-product"
   /patterns/commerce/shopify-preact-fe/: /patterns/commerce/shopify-preact-fe
