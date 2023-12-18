@@ -1,5 +1,5 @@
 import {
-  html, useState, useCallback, useEffect,
+  html, useState, useCallback, useEffect, 
 } from 'preact';
 
 export default function ProductDetails(props) {
