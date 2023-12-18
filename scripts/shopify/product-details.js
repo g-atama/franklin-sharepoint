@@ -32,11 +32,8 @@ export default function ProductDetails(props) {
     setProduct(productResult?.data?.product);
   }, []);
 
-  return html`<div>
-    My name is ${props.sku}.
-    ${value}.
-    <button onClick=${increment}>Increment</button>
-    ${product && html`
+  return html`<div class="product-details">        
+    ${product && html`    
     <h2>${product.title}</h2>
     <img src="${product.variants.nodes[0].image.url}" alt="${product.title}" />
     `}

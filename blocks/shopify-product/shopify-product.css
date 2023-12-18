@@ -1,0 +1,9 @@
+.product-details {
+    h2 {
+        font-family: var(--title-font-family);
+    }
+
+    img {
+        width: 300px;
+    }
+}
