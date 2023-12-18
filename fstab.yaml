@@ -3,4 +3,4 @@ mountpoints:
 
   Folders:
   # Generate everything on and below /products with the "generic-product"
-  /patterns/commerce/shopify-preact-fe/*: /patterns/commerce/shopify-preact-fe
+  /patterns/commerce/shopify-preact-fe/: /patterns/commerce/shopify-preact-fe
