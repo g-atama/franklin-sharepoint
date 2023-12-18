@@ -1,0 +1,25 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "./dist/",                              /* Specify an output folder for all emitted files. */
+    "lib": ["ES2022", "DOM"],
+    "target": "ES2022",
+    "declarationMap": true,                           /* Create sourcemaps for d.ts files. */    
+    "importsNotUsedAsValues": "remove",               /* Specify emit/checking behavior for imports that are only used for types. */    
+    "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
+    "esModuleInterop": true
+  },
+  "baseUrl": "./src",
+  "paths": {
+    "@/*": ["./src/*"]
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "files": true,
+    "experimentalResolver": true
+  }
+}
