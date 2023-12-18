@@ -1,13 +1,9 @@
 import {
-  html, useState, useCallback, useEffect, 
+  html, useState, useCallback, useEffect,
 } from 'preact';
 
 export default function ProductDetails(props) {
-  const [value, setValue] = useState(0);
   const [product, setProduct] = useState(null);
-  const increment = useCallback(() => {
-    setValue(value + 1);
-  }, [value]);
 
   useEffect(async () => {
     const result = await fetch('https://mock.shop/api', {
@@ -21,14 +17,14 @@ export default function ProductDetails(props) {
         // eslint-disable-next-line no-use-before-define
         query: PRODUCT_QUERY,
         variables: {
-          handle: 'men-crewneck',
+          handle: props.handle || 'men-crewneck',
           selectedOptions: [],
           language: 'EN',
           country: 'US',
         },
       }),
     });
-    const productResult = await result.json();    
+    const productResult = await result.json();
     setProduct(productResult?.data?.product);
   }, []);
 
