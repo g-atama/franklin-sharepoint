@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Atama Composed Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/tools/atama/atama-compositions.js" type="module"></script>
+    <link rel="stylesheet" href="/tools/atama/atama-compositions.css" />
+  </head>
+  <body>
+    <main id="atama-commerce-selector">
+      <h1>Atama Composed Content</h1>
+      <p>Select a composed content element and set the nessisary inputs.</p>
+      <label>Select Content Type</label>
+      <select>
+        <option>Banner</option>
+        <option>Contact Form</option>
+        <option>Product Detail</option>
+        <option>Content Section</option>
+      </select>
+      <label>Select Content Provider</label>
+      <select>
+        <option>Adobe Commerce</option>
+        <option>Contentful</option>
+        <option>Shopify</option>
+      </select>
+      <label>Composed Content Inputs</label>
+      <input type="text" placeholder="Product ID" />
+      <button title="Content will be pasted directly into Google Doc or Word">
+        Copy As Static Content
+      </button>
+      <button
+        title="Content reference can be copied into doc. Content will be fetched for user on page load"
+      >
+        Copy As Dynamic Content
+      </button>
+      <button
+        title="Content will be fetched before the page is rendered and automatically included on the page"
+      >
+        Copy Server Include
+      </button>
+    </main>
+  </body>
+</html>
