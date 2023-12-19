@@ -28,7 +28,7 @@ const blockTemplate = document.createElement('template');
 blockTemplate.innerHTML = `
 <table border="1" style="width: 100%">
 <tr><th style="background: pink;">shopify-product</th></tr>
-<tr><td>Hoodie</td></tr>
+<tr><td></td></tr>
 </table>
 `;
 
@@ -51,6 +51,7 @@ class ArcProductCard extends HTMLElement {
     const thing = document.createElement('div');
     thing.append(blockTemplate.content.cloneNode(true));
     thing.querySelectorAll('th')[0].textContent = `shopify-product (${this.handle})`;
+    thing.querySelectorAll('td')[0].textContent = `${this.title}`;
 
     const clipboardData = [new ClipboardItem({
       'text/html': new Blob([thing.innerHTML], { type: 'text/html' }),
