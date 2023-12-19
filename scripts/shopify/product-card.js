@@ -106,11 +106,12 @@ class ArcProductCard extends HTMLElement {
     style.textContent = `
       #arc-product-card {    
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        width: 100%;                             
+        grid-template-columns: 1fr 1fr 1fr;                      
         opacity: 0;
         transition: opacity 175ms ease-in, visibility 0ms ease-in 250ms;
         gap: 10px;
+        padding: 1rem;
+        border-radius: .2rem;
       }
 
       #arc-product-card.show {        
@@ -123,14 +124,19 @@ class ArcProductCard extends HTMLElement {
         margin: 0;
       }
 
+      .controls {
+        justify-content: space-evenly;                
+        display:flex;
+        flex-direction: column;
+        gap: 5px;
+      }
 
       #arc-product-card img {
         object-fit: contain;
         width: 100%;
       }
 
-      .info {
-        padding: 1rem;
+      .info {        
         display: flex;
         flex-direction: column;
         gap: 5px;        
