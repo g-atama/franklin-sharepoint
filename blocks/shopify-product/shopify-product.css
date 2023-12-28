@@ -1,4 +1,4 @@
-.product-details {
+.product-details, .product-details-s {
     h2 {
         font-family: var(--title-font-family);
     }

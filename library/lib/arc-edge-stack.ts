@@ -54,8 +54,20 @@ export class ArcEdgeStack extends Stack {
       }
     );
 
+    const headerTransformFunctionHTML =
+      new cloudfront.experimental.EdgeFunction(this, "header-transform-html", {
+        runtime: Runtime.NODEJS_LATEST,
+        handler: "index.handler",
+        functionName: `${props.prefix}-header-transform-html`,
+        code: Code.fromAsset("./apps/header-transform-html/dist/"),
+      });
+
     const commerceDataFunctionAndURL =
       this.createVolatileCommerceDataFunctionAndURL(props.prefix);
+
+    const shopifyAEMLoaderFunction = this.createShopifyAEMLoaderFunction(
+      props.prefix
+    );
 
     const personalizeEdgeFunctionAndURL =
       this.createEdgePersonalizationFunctionAndURL(props.prefix);
@@ -69,6 +81,18 @@ export class ArcEdgeStack extends Stack {
         sendPushInvalidationHeader: false,
         edsURL: props.edsURL,
         additionalBehaviors: {
+          "/patterns/commerce/shopify-first/*": {
+            origin: new HttpOrigin(
+              Fn.parseDomainName(shopifyAEMLoaderFunction.url.url)
+            ),
+            compress: true,
+            edgeLambdas: [
+              {
+                functionVersion: headerTransformFunctionHTML.currentVersion,
+                eventType: cloudfront.LambdaEdgeEventType.ORIGIN_RESPONSE,
+              },
+            ],
+          },
           "/_data/commerce/volatile/*": {
             origin: new HttpOrigin(
               Fn.parseDomainName(commerceDataFunctionAndURL.url.url)
@@ -112,6 +136,28 @@ export class ArcEdgeStack extends Stack {
       },
     });
   }
+
+  createShopifyAEMLoaderFunction = (prefix: string) => {
+    // TODO: this should be protected by signing until OAC is supported
+    // see: https://github.com/aws/aws-cdk/issues/20090#issuecomment-1179816882
+    // see: https://github.com/pwrdrvr/lambda-url-signing
+    const shopifyFunction = new Function(this, `${prefix}-shopify-aem-loader`, {
+      runtime: Runtime.NODEJS_LATEST,
+      handler: "index.handler",
+      functionName: `${prefix}-shopify-aem-loader`,
+      code: Code.fromAsset("./apps/shopify-aem-loader/dist/"),
+    });
+    const shopifyFunctionURL = shopifyFunction.addFunctionUrl({
+      // TODO: This should be swapped to IAM type, and then we need an edge function to handle this
+      // see: https://github.com/pwrdrvr/lambda-url-signing
+      authType: FunctionUrlAuthType.NONE,
+    });
+
+    return {
+      function: shopifyFunction,
+      url: shopifyFunctionURL,
+    };
+  };
 
   createVolatileCommerceDataFunctionAndURL = (prefix: string) => {
     // TODO: this should be protected by signing until OAC is supported

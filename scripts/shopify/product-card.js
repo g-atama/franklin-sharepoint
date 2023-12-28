@@ -15,7 +15,7 @@ template.innerHTML = `
       >
         Copy As Dynamic Content
       </button>
-      <button
+      <button id="copy-server"
         title="Content will be fetched before the page is rendered and automatically included on the page"
       >
         Copy Server Include
@@ -45,12 +45,26 @@ class ArcProductCard extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.copyStaticElement.onclick = this.copyClipboard;
+    this.copyServerElement.onclick = this.copyClipboardServer;
   }
 
   copyClipboard = async () => {
     const thing = document.createElement('div');
     thing.append(blockTemplate.content.cloneNode(true));
     thing.querySelectorAll('th')[0].textContent = `shopify-product (${this.handle})`;
+    thing.querySelectorAll('td')[0].textContent = `${this.title}`;
+
+    const clipboardData = [new ClipboardItem({
+      'text/html': new Blob([thing.innerHTML], { type: 'text/html' }),
+    })];
+
+    navigator.clipboard.write(clipboardData);
+  };
+
+  copyClipboardServer = async () => {
+    const thing = document.createElement('div');
+    thing.append(blockTemplate.content.cloneNode(true));
+    thing.querySelectorAll('th')[0].textContent = `shopify-product (${this.handle}, server)`;
     thing.querySelectorAll('td')[0].textContent = `${this.title}`;
 
     const clipboardData = [new ClipboardItem({
@@ -74,6 +88,10 @@ class ArcProductCard extends HTMLElement {
 
   get copyStaticElement() {
     return this.shadowRoot.getElementById('copy-static');
+  }
+
+  get copyServerElement() {
+    return this.shadowRoot.getElementById('copy-server');
   }
 
   get titleElement() {
