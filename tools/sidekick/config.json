@@ -3,6 +3,12 @@
     "host": "",
     "plugins": [
         {
+            "id": "library",
+            "title": "Library",
+            "environments": ["edit"],
+            "url": "/tools/library/library.html"
+          },
+        {
             "id": "atama-commerce-selector",
             "isPalette": true,
             "title": "Commerce Content Selector",
