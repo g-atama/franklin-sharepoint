@@ -3,6 +3,4 @@ mountpoints:
 
 folders:
   /patterns/commerce/shopify-preact-fe/: /patterns/commerce/shopify-preact-fe
-
-folders:
   /patterns/commerce/magento-preact-fe/: /patterns/commerce/magento-preact-fe
