@@ -5,7 +5,7 @@ import { ProductDetails } from 'atama-magento';
 
 function getHandleFromUrl() {
   const path = window.location.pathname;
-  const result = path.match(/\/shopify-preact-fe\/([\w]+)$/);
+  const result = path.match(/\/magento-preact-fe\/([\w]+)$/);
   return result?.[1];
 }
 
