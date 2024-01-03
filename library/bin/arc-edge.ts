@@ -9,5 +9,5 @@ const app = new cdk.App();
 new ArcEdgeStack(app, "ArcEdge-sandbox", {
   env: { account: "584780088697", region: "us-east-1" },
   prefix: "sandbox",
-  edsURL: "main--aftest--k-atama.hlx.live",
+  edsURL: "main--arc-patterns--atamaco.hlx.live",
 });
