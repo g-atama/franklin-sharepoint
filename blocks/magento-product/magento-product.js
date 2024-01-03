@@ -5,7 +5,7 @@ import { ProductDetails } from 'atama-magento';
 
 function getHandleFromUrl() {
   const path = window.location.pathname;
-  const result = path.match(/\/magento-preact-fe\/([\w]+)$/);
+  const result = path.match(/\/magento-preact-fe\/([\w-]+)$/);  
   return result?.[1];
 }
 
@@ -24,7 +24,7 @@ function getHandleFromContent($block) {
 export default async function decorate($block) {
   $block.innerHTML = '<div></div>';
 
-  const app = html`<${ProductDetails} url=${getHandleFromUrl() || getHandleFromContent($block) || getHandleFromClass($block)} />`;
+  const app = html`<${ProductDetails} handle=${getHandleFromUrl() || getHandleFromContent($block) || getHandleFromClass($block)} />`;
 
   render(app, $block);
 }
