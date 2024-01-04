@@ -52,7 +52,7 @@ init();
 const MAGENTO_PRODUCT_QUERY = `#graphql
 query Products($term: String!)
 {
-    products(search: $term, limit: 10) {
+    products(search: $term, pageSize: 10) {
         items {
             name
             url_key
