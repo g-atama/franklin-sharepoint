@@ -27,7 +27,7 @@ template.innerHTML = `
 const blockTemplate = document.createElement('template');
 blockTemplate.innerHTML = `
 <table border="1" style="width: 100%">
-<tr><th style="background: pink;">shopify-product</th></tr>
+<tr><th style="background: pink;">${this.system}-product</th></tr>
 <tr><td></td></tr>
 </table>
 `;
@@ -40,6 +40,8 @@ class ArcProductCard extends HTMLElement {
 
   handle = '';
 
+  system = 'magento';
+
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -51,7 +53,7 @@ class ArcProductCard extends HTMLElement {
   copyClipboard = async () => {
     const thing = document.createElement('div');
     thing.append(blockTemplate.content.cloneNode(true));
-    thing.querySelectorAll('th')[0].textContent = `shopify-product (${this.handle})`;
+    thing.querySelectorAll('th')[0].textContent = `${this.system}-product (${this.handle})`;
     thing.querySelectorAll('td')[0].textContent = `${this.title}`;
 
     const clipboardData = [new ClipboardItem({
@@ -64,7 +66,7 @@ class ArcProductCard extends HTMLElement {
   copyClipboardServer = async () => {
     const thing = document.createElement('div');
     thing.append(blockTemplate.content.cloneNode(true));
-    thing.querySelectorAll('th')[0].textContent = `shopify-product (${this.handle}, server)`;
+    thing.querySelectorAll('th')[0].textContent = `${this.system}-product (${this.handle}, server)`;
     thing.querySelectorAll('td')[0].textContent = `${this.title}`;
 
     const clipboardData = [new ClipboardItem({
@@ -75,7 +77,7 @@ class ArcProductCard extends HTMLElement {
   };
 
   static get observedAttributes() {
-    return ['thumbnail', 'title', 'handle'];
+    return ['thumbnail', 'title', 'handle', 'system'];
   }
 
   get rootElement() {
@@ -102,6 +104,10 @@ class ArcProductCard extends HTMLElement {
     return this.shadowRoot.getElementById('handle');
   }
 
+  get systemElement() {
+    return this.shadowRoot.getElementById('system');
+  }
+
   setValues(show) {
     if (show) {
       this.rootElement.classList.add('show');
@@ -118,6 +124,7 @@ class ArcProductCard extends HTMLElement {
     this.thumbnail = this.getAttribute('thumbnail') || '';
     this.title = this.getAttribute('title') || '';
     this.handle = this.getAttribute('handle') || '';
+    this.system = this.getAttribute('system') || '';
 
     // Create some CSS to apply to the shadow dom
     const style = document.createElement('style');
@@ -176,6 +183,11 @@ class ArcProductCard extends HTMLElement {
 
       case 'handle':
         this.handle = newValue;
+        this.setValues(true);
+        break;
+
+      case 'system':
+        this.system = newValue;
         this.setValues(true);
         break;
 

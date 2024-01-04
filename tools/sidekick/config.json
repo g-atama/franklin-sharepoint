@@ -11,10 +11,18 @@
         {
             "id": "atama-commerce-selector",
             "isPalette": true,
-            "title": "Commerce Content Selector",
+            "title": "Shopify Content Selector",
             "environments": ["edit"],
             "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)",
             "url": "/tools/atama-commerce-selector/index.html"
+        },  
+        {
+            "id": "atama-commerce-selector-magento",
+            "isPalette": true,
+            "title": "Adobe Commerce Content Selector",
+            "environments": ["edit"],
+            "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)",
+            "url": "/tools/atama-commerce-selector-magento/index.html"
         }  
     ]
 }
