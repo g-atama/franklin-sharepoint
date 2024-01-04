@@ -27,7 +27,7 @@ template.innerHTML = `
 const blockTemplate = document.createElement('template');
 blockTemplate.innerHTML = `
 <table border="1" style="width: 100%">
-<tr><th style="background: pink;">${this.system}-product</th></tr>
+<tr><th style="background: pink;"></th></tr>
 <tr><td></td></tr>
 </table>
 `;
