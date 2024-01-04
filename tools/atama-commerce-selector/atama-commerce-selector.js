@@ -38,6 +38,7 @@ async function fetchResults(term) {
     card.setAttribute('title', product.node.title);
     card.setAttribute('handle', product.node.handle);
     card.setAttribute('thumbnail', product?.node?.images?.edges?.[0]?.node?.url);
+    card.setAttribute('system', 'shopify');
   });
 }
 

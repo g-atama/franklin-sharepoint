@@ -30,12 +30,13 @@ async function fetchResults(term) {
   const productResult = await result.json();
   const cardsContainer = document.getElementById('cards');
   cardsContainer.textContent = '';
-  productResult?.data?.products?.edges?.forEach((product) => {
+  productResult?.data?.products?.items?.forEach((product) => {
     const card = document.createElement('arc-product-card');
     cardsContainer.append(card);
-    card.setAttribute('title', product.node.title);
-    card.setAttribute('handle', product.node.handle);
-    card.setAttribute('thumbnail', product?.node?.images?.edges?.[0]?.node?.url);
+    card.setAttribute('title', product.name);
+    card.setAttribute('handle', product.url_key);
+    card.setAttribute('thumbnail', product?.image?.url);
+    card.setAttribute('system', 'magento')
   });
 }
 
@@ -51,7 +52,7 @@ init();
 const MAGENTO_PRODUCT_QUERY = `#graphql
 query Products($term: String!)
 {
-    products(search: $term) {
+    products(search: $term, limit: 10) {
         items {
             name
             url_key
