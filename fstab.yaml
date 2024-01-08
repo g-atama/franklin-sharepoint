@@ -1,5 +1,5 @@
 mountpoints:
-  /: https://drive.google.com/drive/folders/1uhqMBtSDqmbNWDRHV1KkY1znzTq2WtjW
+  /: https://atamadigital.sharepoint.com/sites/g-boilerplate-teamsite/Shared%20Documents/web-content
 
 folders:
   /patterns/commerce/shopify-preact-fe/: /patterns/commerce/shopify-preact-fe
